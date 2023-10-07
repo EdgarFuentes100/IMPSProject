@@ -1,39 +1,40 @@
 <div class="container p-4">
     <div class="row justify-content-center">
-        <h1>Editar estudiante</h1>
+        <h1>Actualizar estudiante</h1>
     </div>
     <div class="row justify-content-center mt-4">
         <div class="col-md-4">
-            <form action="/estudiantes/actualizar" method="POST">
+            <form action="/estudiantes/modificar/{{estudiante.idestudiante}}" method="POST">
                 <div class="form-group">
                     <input type="text" class="form-control" name="idestudiante" placeholder="Codigo del estudiante"
-                        value="{{idestudiante}}" autofocus readonly />
+                        value="{{estudiante.idestudiante}}" autofocus />
                 </div>
                 <div class="form-group">
                     <input type="text" class="form-control" name="nombre" placeholder="Nombre del estudiante"
-                        value="{{nombre}}" autofocus />
+                        value="{{estudiante.nombre}}" />
                 </div>
                 <div class="form-group">
                     <input type="text" class="form-control" name="apellido" placeholder="Apellido del estudiante"
-                        value="{{apellido}}" />
+                        value="{{estudiante.apellido}}" />
                 </div>
                 <div class="form-group">
                     <input type="email" class="form-control" name="email" placeholder="Correo del estudiante"
-                        value="{{email}}" />
+                        value="{{estudiante.email}}" />
                 </div>
                 <div class="form-group">
-                    <select class="form-control" name="idcarrera" id="selectCarrera">
+                    <select class="form-control" name="idcarrera">
                         {{#each lstCarreras}}
-                        <option value="{{idcarrera}}">{{carrera}}</option>
+                        <option value="{{idcarrera}}" {{#eq idcarrera ../estudiante.idcarrera}}selected{{/eq}}>
+                            {{carrera}}</option>
                         {{/each}}
                     </select>
                 </div>
                 <div class="form-group">
                     <input type="text" class="form-control" name="usuario" placeholder="Usuario del estudiante"
-                        value="{{usuario}}" />
+                        value="{{estudiante.usuario}}" />
                 </div>
                 <div class="form-group">
-                    <button class="btn btn-success btn-block">Guardar</button>
+                    <button class="btn btn-success btn-block">Actualizar</button>
                 </div>
             </form>
         </div>
