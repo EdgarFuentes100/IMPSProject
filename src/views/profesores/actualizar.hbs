@@ -1,0 +1,42 @@
+<div class="container p-4">
+    <div class="row justify-content-center">
+        <h1>Actualizar profesor</h1>
+    </div>
+    <div class="row justify-content-center mt-4">
+        <div class="col-md-4">
+            <form action="/profesores/modificar/{{profesor.idprofesor}}" method="POST">
+                <div class="form-group">
+                    <input type="text" class="form-control" name="idprofesor" placeholder="Codigo del profesor"
+                        value="{{profesor.idprofesor}}" autofocus />
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control" name="nombre" placeholder="Nombre del profesor"
+                        value="{{profesor.nombre}}" />
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control" name="apellido" placeholder="Apellido del profesor"
+                        value="{{profesor.apellido}}" />
+                </div>
+                <div class="form-group">
+                    <input type="email" class="form-control" name="email" placeholder="Correo del profesor"
+                        value="{{profesor.email}}" />
+                </div>
+                <div class="form-group">
+                    <select class="form-control" name="idmateria">
+                        {{#each lstMaterias}}
+                        <option value="{{idmateria}}" {{#eq idmateria ../profesor.idmateria}}selected{{/eq}}>
+                            {{materia}}</option>
+                        {{/each}}
+                    </select>
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control" name="usuario" placeholder="Usuario del profesor"
+                        value="{{profesor.usuario}}" />
+                </div>
+                <div class="form-group">
+                    <button class="btn btn-success btn-block">Actualizar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

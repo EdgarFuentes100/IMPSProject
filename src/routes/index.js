@@ -2,6 +2,8 @@ const express = require('express');
 const router = express.Router();
 const estuidanteRepository = require('../repositories/EstudianteRepository');
 const carrerasRepository = require('../repositories/CarreraRepository');
+const materiasRepository = require('../repositories/MateriaRepository');
+
 
 // Configuracion de ruta inicial de la aplicacion
 router.get('/', async (request, response) => {
@@ -11,6 +13,9 @@ router.get('/', async (request, response) => {
 
     const lstCarreras = await carrerasRepository.obtenerTodosLasCarreras();
     console.log('Listado: ', lstCarreras);
+
+    const lstMaterias = await materiasRepository.obtenerTodosLasMaterias();
+    console.log('Listado: ', lstMaterias);
 
     response.send('Bienvenido al laboratorio de IMPS');
 });
