@@ -2,11 +2,12 @@ const express = require('express');
 const router = express.Router();
 const queries = require('../repositories/MateriaRepository');
 
-// Endpoint para mostrar todos los materias
-router.get('/', async (request, response) => {
-    const materias = await queries.obtenerTodosLasMaterias();
+// Endpoint para obtener todas las materias
+router.get('/', async(request, response) => {
 
-     response.render('materias/listado', {materias: materias}); // Mostramos el listado de materias
+    const materias = await queries.obtenerTodasLasMaterias();
+
+    response.render('materias/listado', { materias });
 });
 
 // Endpoint que permite mostrar el formulario para agregar una nueva materia
@@ -41,8 +42,8 @@ router.post('/modificar/:id', async(request, response) => {
 
 // Endpoint para agregar una materia
 router.post('/agregar', async(request, response) => {
-    const { idmateria, materia } = request.body;
-    const nuevaMateria = { idmateria, materia };
+    const { materia } = request.body;
+    const nuevaMateria = { materia };
     
     // Se trata de una insercion
     const resultado = await queries.insertarMateria(nuevaMateria);
@@ -60,5 +61,6 @@ router.get('/eliminar/:idmateria', async(request, response) => {
     }
     response.redirect('/materias');
 });
+
 
 module.exports = router;

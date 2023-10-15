@@ -53,6 +53,4 @@ module.exports = {
         console.log('Ocurrio un problema al obtener informacion de la carrera');
       }
     }
-
-    
 }

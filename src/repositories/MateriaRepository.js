@@ -2,28 +2,29 @@ const pool = require('../config/databaseController');
 
 module.exports = {
 
-    // Consulta para obtener todos las materias
-    obtenerTodosLasMaterias: async() => {
+    // Consulta para obtener todas las materias
+    obtenerTodasLasMaterias: async() => {
         try {
-            const result = await pool.query('SELECT * FROM materias');
-            return result;
+            const resultado = await pool.query('SELECT * FROM materias');
+
+            return resultado;
         } catch (error) {
-            console.error('Ocurrio un problema al consultar la lista de materias: ', error);
-        }
-    },
-    
-    // Eliminar una materia
-    eliminarMateria: async(idmateria) => {
-        try{
-          const result = await pool.query('DELETE FROM materias WHERE idmateria = ?', [idmateria]);
-          return result.affectedRows > 0;
-        }catch(error){
-          console.error('Error al eliminar el registro', error);
+            console.error('Ocurrio un problema al consultar el listado de materias');
         }
     },
 
+    // Consulta para eliminar una materia
+    eliminarMateria: async(idmateria) => {
+        try {
+            const resultado = await pool.query('DELETE FROM materias WHERE idmateria = ?', [idmateria]);
+            return result.affectedRows > 0;
+        } catch (error) {
+            console.error('Ocurrio un problema al eliminar una materia');
+        }
+    },
+    
     // Insertar una materia
-     insertarMateria: async(nuevaMateria) => {
+    insertarMateria: async(nuevaMateria) => {
         try{
           const result = await pool.query("INSERT INTO materias SET ? ", nuevaMateria);
           return result.insertId;
@@ -50,9 +51,7 @@ module.exports = {
 
         return materia;
       } catch (error) {
-        console.log('Ocurrio un problema al obtener informacion de la materias');
+        console.log('Ocurrio un problema al obtener informacion de la materia');
       }
     }
-
-    
 }

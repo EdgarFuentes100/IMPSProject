@@ -2,7 +2,7 @@
     <div class="col-sm-12">
         <div class="row">
             <div class="col-sm-6">
-                <h3>Listado profesores</h3>
+                <h3>Listado de profesores</h3>
             </div>
             <div class="col-sm-6">
                 <a href="/profesores/agregar" class="btn btn-success d-block text-white">Agregar profesor</a>
@@ -16,9 +16,10 @@
                 <th scope="col">ID</th>
                 <th scope="col">Nombre</th>
                 <th scope="col">Apellido</th>
+                <th scope="col">Fecha nacimiento</th>
+                <th scope="col">Profesion</th>
+                <th scope="col">Genero</th>
                 <th scope="col">Email</th>
-                <th scope="col">ID Materia</th>
-                <th scope="col">Usuario</th>
                 <th scope="col">Opciones</th>
             </tr>
         </thead>
@@ -28,9 +29,10 @@
                 <th scope="row">{{idprofesor}}</th>
                 <td>{{nombre}}</td>
                 <td>{{apellido}}</td>
+                <td>{{formatDate fecha_nacimiento "DD/MM/YYYY"}}</td>
+                <td>{{profesion}}</td>
+                <td>{{genero}}</td>
                 <td>{{email}}</td>
-                <td>{{idmateria}}</td>
-                <td>{{usuario}}</td>
                 <td>
                     <a class="btn btn-primary text-white" href="/profesores/modificar/{{idprofesor}}">Modificar</a>
                     <a href="/profesores/eliminar/{{idprofesor}}" class="btn btn-danger text-white">Eliminar</a>
