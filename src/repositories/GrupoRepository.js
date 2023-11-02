@@ -5,7 +5,7 @@ module.exports = {
     // Consulta para obtener todos los grupos
     obtenerTodosLosGrupos: async() => {
         try {
-            const result = await pool.query('SELECT g.idgrupo, g.num_grupo, g.anio, g.ciclo, m.materia, p.nombre, m.idmateria, p.idprofesor from grupos g, materias m, profesores p WHERE g.idmateria = m.idmateria AND g.idprofesor = p.idprofesor');
+            const result = await pool.query('SELECT g.idgrupo, g.num_grupo, g.anio, g.ciclo,g.idmateria, m.materia, g.idprofesor, p.nombre FROM grupos g, materias m, profesores p where g.idmateria = m.idmateria and g.idprofesor = p.idprofesor');
             return result;
         } catch (error) {
             console.error('Ocurrio un problema al consultar la lista de grupos: ', error);
@@ -29,7 +29,7 @@ module.exports = {
           return result.insertId;
 
         }catch(error){
-          console.error('Erro al eliminar el registro', error);
+          console.error('Erro al insertar el registro', error);
         }
     },
 
@@ -51,6 +51,18 @@ module.exports = {
         return grupo;
       } catch (error) {
         console.log('Ocurrio un problema al obtener informacion del grupo');
+      }
+    },
+
+    // Asignar grupo
+    asignarGrupo: async(asignacion) => {
+      try {
+        const result = await pool.query("INSERT INTO grupo_estudiantes SET ? ", asignacion);
+        console.log('resultado: ', result)
+        return result.insertId;
+
+      } catch (error) {
+        console.log('Ocurrio un problema al asignar el grupo', error);
       }
     }
 }

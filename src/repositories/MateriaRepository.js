@@ -17,7 +17,7 @@ module.exports = {
     eliminarMateria: async(idmateria) => {
         try {
             const resultado = await pool.query('DELETE FROM materias WHERE idmateria = ?', [idmateria]);
-            return result.affectedRows > 0;
+          return resultado.affectedRows > 0;
         } catch (error) {
             console.error('Ocurrio un problema al eliminar una materia');
         }

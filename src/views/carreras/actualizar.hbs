@@ -8,13 +8,18 @@
                 <div class="form-group">
                     <input type="text" class="form-control" name="idcarrera" placeholder="Codigo de la carrera"
                         value="{{carrera.idcarrera}}" autofocus />
-                </div>                 
-                <div class="form-group">
-                    <input type="text" class="form-control" name="carrera" placeholder="Nombre de la carrera" 
-                        value="{{carrera.carrera}}"/>
                 </div>
                 <div class="form-group">
-                    <button class="btn btn-success btn-block">Actualizar</button>
+                    <input type="text" class="form-control" name="carrera" placeholder="Nombre de la carrera"
+                        value="{{carrera.carrera}}" />
+                </div>
+                <div class="form-group row">
+                    <div class="col-6">
+                        <button class="btn btn-success btn-block">Actualizar</button>
+                    </div>
+                    <div class="col-6">
+                        <a href="/carreras" class="btn btn-secondary btn-block">Regresar</a>
+                    </div>
                 </div>
             </form>
         </div>

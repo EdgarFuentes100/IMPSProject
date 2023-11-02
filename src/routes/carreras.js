@@ -21,7 +21,7 @@ router.get('/modificar/:idcarrera', async(request, response) => {
     const {idcarrera} = request.params;
 
     // Aca es de obtener el objeto del carrera
-    const carrera = await queries.obtenerCarreraPorID(idcarrera)
+    const carrera = await queries.obtenerCarreraPorID(idcarrera);
 
     response.render('carreras/actualizar', {idcarrera, carrera});
 });
@@ -35,17 +35,28 @@ router.post('/modificar/:id', async(request, response) => {
 
     const actualizacion = await queries.actualizarCarrera(id, nuevaCarrera);
 
+    if(actualizacion){
+        request.flash('success', 'Registro actualizado con exito');
+     } else {
+        request.flash('error', 'Ocurrio un problema al actualizar el registro');
+     }
+     
     response.redirect('/carreras');
-
 });
 
 // Endpoint para agregar una carrera
 router.post('/agregar', async(request, response) => {
     const { idcarrera, carrera } = request.body;
-    const nuevaCarrera = { idcarrera, carrera };
+    const nuevaCarrera = { carrera, idcarrera };
     
     // Se trata de una insercion
     const resultado = await queries.insertarCarrera(nuevaCarrera);
+
+    if(resultado){
+       request.flash('success', 'Registro insertado con exito');
+    } else {
+       request.flash('error', 'Ocurrio un problema al guardar el registro');
+    }
     
     response.redirect('/carreras');
 });
@@ -56,7 +67,9 @@ router.get('/eliminar/:idcarrera', async(request, response) => {
     const { idcarrera } = request.params;
     const resultado = await queries.eliminarCarrera(idcarrera);
     if(resultado > 0){
-        console.log('Eliminado con éxito');
+        request.flash('success', 'Eliminacion correcta');
+    } else {
+        request.flash('error', 'Error al eliminar');
     }
     response.redirect('/carreras');
 });

@@ -36,6 +36,12 @@ router.post('/modificar/:id', async(request, response) => {
 
     const actualizacion = await queries.actualizarMateria(id, nuevaMateria);
 
+    if(actualizacion){
+        request.flash('success', 'Registro actualizado con exito');
+     } else {
+        request.flash('error', 'Ocurrio un problema al actualizar el registro');
+     }
+
     response.redirect('/materias');
 
 });
@@ -47,7 +53,12 @@ router.post('/agregar', async(request, response) => {
     
     // Se trata de una insercion
     const resultado = await queries.insertarMateria(nuevaMateria);
-    
+
+    if(resultado){
+        request.flash('success', 'Registro insertado con exito');
+     } else {
+        request.flash('error', 'Ocurrio un problema al guardar el registro');
+     }
     response.redirect('/materias');
 });
 
@@ -56,8 +67,11 @@ router.get('/eliminar/:idmateria', async(request, response) => {
     // Desestructuramos el objeto que nos mandan en la peticion y extraemos el idmateria
     const { idmateria } = request.params;
     const resultado = await queries.eliminarMateria(idmateria);
+    
     if(resultado > 0){
-        console.log('Eliminado con éxito');
+        request.flash('success', 'Eliminacion correcta');
+    } else {
+        request.flash('error', 'Error al eliminar');
     }
     response.redirect('/materias');
 });

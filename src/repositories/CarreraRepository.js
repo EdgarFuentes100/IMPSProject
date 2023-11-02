@@ -26,8 +26,9 @@ module.exports = {
      insertarCarrera: async(nuevaCarrera) => {
         try{
           const result = await pool.query("INSERT INTO carreras SET ? ", nuevaCarrera);
-          return result.insertId;
-
+        
+          return result;
+          
         }catch(error){
           console.error('Erro al insertar el registro', error);
         }
@@ -37,7 +38,7 @@ module.exports = {
     actualizarCarrera: async(idcarrera, actualizacion) => {
       try {
         const resultado = await pool.query('UPDATE carreras SET ? WHERE idcarrera = ?', [actualizacion, idcarrera]);
-        return resultado.affectedRows > 0;  
+        return resultado;  
       } catch (error) {
         console.log('Error al actualizar carrera', error);
       }

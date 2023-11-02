@@ -17,7 +17,7 @@ module.exports = {
     eliminarProfesor: async(idprofesor) => {
         try {
             const resultado = await pool.query('DELETE FROM profesores WHERE idprofesor = ?', [idprofesor]);
-            return result.affectedRows > 0;
+            return resultado.affectedRows > 0;
         } catch (error) {
             console.error('Ocurrio un problema al eliminar un profesor');
         }
